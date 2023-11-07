@@ -1,0 +1,78 @@
+html,
+body {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#highlighter {
+  display: grid;
+  grid-gap: 0.5em;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 2em 1fr;
+  grid-template-areas:
+    "language theme"
+    "code output";
+
+  height: 100%;
+  width: 100%;
+  max-width: 800px;
+}
+
+@media (max-width: 600px) {
+  #highlighter {
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 1fr 1fr;
+    grid-template-areas:
+      "language"
+      "theme"
+      "code"
+      "output";
+  }
+}
+
+#highlighter * {
+  border-radius: 4px;
+}
+
+#language {
+  grid-area: language;
+  margin: 0;
+}
+
+#theme {
+  grid-area: theme;
+  margin: 0;
+}
+
+#code {
+  grid-area: code;
+  font-family: monospace;
+  padding: 1em;
+  margin: 0;
+  resize: none;
+}
+
+.output-area {
+  grid-area: output;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#output {
+  font-family: monospace !important;
+  font-size: initial !important;
+  line-height: initial !important;
+  padding: 1em;
+  margin-bottom: 0.5em;
+  flex: 1;
+  white-space: pre-wrap;
+}
+
+#output span[class=""] {
+  color: white;
+}
+
+#copy {
+  width: 100%;
+}
