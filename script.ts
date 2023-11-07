@@ -11,6 +11,7 @@ const elem = {
   theme: document.getElementById("theme") as HTMLSelectElement,
   code: document.getElementById("code") as HTMLTextAreaElement,
   copy: document.getElementById("copy") as HTMLButtonElement,
+  footer: document.getElementById("footer") as HTMLElement,
 };
 
 function initialize() {
@@ -110,6 +111,17 @@ function initialize() {
       elem.copy.textContent = "Copy";
     }, 2000);
   });
+
+  /*
+   * Initialize the footer
+   */
+  elem.footer.addEventListener("click", () => {
+    const visible = elem.footer.querySelector(".visible");
+    visible.classList.remove("visible");
+
+    const next = visible.nextElementSibling || elem.footer.firstElementChild;
+    next.classList.add("visible");
+  });
 }
 
 // cloneStyledElement clones an element and its styles. The returning element
@@ -144,7 +156,7 @@ function cloneStyledElement(element: HTMLElement, use: (_: HTMLElement) => void)
     }
   }
 
-  for (let descendant of descendants) {
+  for (const descendant of descendants) {
     if (descendant instanceof HTMLElement) {
       descendant.id = "";
       descendant.className = "";

@@ -46662,7 +46662,8 @@ const elem = {
     output: document.getElementById("output"),
     theme: document.getElementById("theme"),
     code: document.getElementById("code"),
-    copy: document.getElementById("copy")
+    copy: document.getElementById("copy"),
+    footer: document.getElementById("footer")
 };
 function initialize() {
     __default.forEach((theme)=>{
@@ -46726,6 +46727,12 @@ function initialize() {
             elem.copy.textContent = "Copy";
         }, 2000);
     });
+    elem.footer.addEventListener("click", ()=>{
+        const visible = elem.footer.querySelector(".visible");
+        visible.classList.remove("visible");
+        const next = visible.nextElementSibling || elem.footer.firstElementChild;
+        next.classList.add("visible");
+    });
 }
 function cloneStyledElement(element, use) {
     const clone = element.cloneNode(true);
@@ -46752,7 +46759,7 @@ function cloneStyledElement(element, use) {
             }
         }
     }
-    for (let descendant of descendants){
+    for (const descendant of descendants){
         if (descendant instanceof HTMLElement) {
             descendant.id = "";
             descendant.className = "";
