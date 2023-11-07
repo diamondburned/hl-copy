@@ -61,10 +61,12 @@ function initialize() {
   let language: string | undefined;
 
   const update = () => {
-    const result = hljs.highlightAuto(
-      elem.code.value,
-      language ? [language] : undefined,
-    );
+    let result: hljs_.HighlightResult;
+    if (language) {
+      result = hljs.highlight(elem.code.value, { language });
+    } else {
+      result = hljs.highlightAuto(elem.code.value);
+    }
     elem.output.innerHTML = result.value;
   };
 
